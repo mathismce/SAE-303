@@ -10,7 +10,6 @@ import { V } from "./js/view.js";
    Toute opération de filtrage des données devra être définie dans le modèle.
    Et en fonction des actions de l'utilisateur, le contrôleur pourra demander au modèle de lui retourner des données filtrées
    pour ensuite les passer à la vue pour affichage //pour test//.
-
    Exception : Afficher 1, 2 ou les 3 années de formation sans autre filtrage peut être géré uniquement au niveau de la vue.
 */
    
@@ -38,5 +37,27 @@ let edt = [
   },
 ]
 
+
+
 // creating events in the calendar
-V.uicalendar.createEvents( edt );
+V.uicalendar.createEvents( M.getEvents('mmi1') );
+V.uicalendar.createEvents( M.getEvents('mmi2') );
+V.uicalendar.createEvents( M.getEvents('mmi3') );
+
+
+
+
+let C = {};
+
+
+
+V.init();
+V.update_color();
+
+
+
+
+
+
+C.init();
+
