@@ -12,7 +12,7 @@ import { V } from "./js/view.js";
    pour ensuite les passer à la vue pour affichage //pour test//.
    Exception : Afficher 1, 2 ou les 3 années de formation sans autre filtrage peut être géré uniquement au niveau de la vue.
 */
-   
+
 
 // loadind data (and wait for it !)
 await M.init();
@@ -40,9 +40,9 @@ let edt = [
 
 
 // creating events in the calendar
-V.uicalendar.createEvents( M.getEvents('mmi1') );
-V.uicalendar.createEvents( M.getEvents('mmi2') );
-V.uicalendar.createEvents( M.getEvents('mmi3') );
+V.uicalendar.createEvents(M.getEvents('mmi1'));
+V.uicalendar.createEvents(M.getEvents('mmi2'));
+V.uicalendar.createEvents(M.getEvents('mmi3'));
 
 
 
@@ -55,9 +55,38 @@ V.init();
 V.update_color();
 
 
+C.course_color = function (cal, cm, td, tp ){
+  let calendrier = M.getEvents(cal);
 
+  for (let event of calendrier) {
+    if (event.title.includes('TP')) {
+      let changes = {
+        backgroundColor : tp
+      }
 
+      V.uicalendar.updateEvent(event.id, cal, changes)
+    }
+    else if (event.title.includes('TD')) {
+      let changes = {
+        backgroundColor : td
+      }
 
+      V.uicalendar.updateEvent(event.id, cal, changes)
+    }
+    else if (event.title.includes('CM')) {
+      let changes = {
+        backgroundColor : cm
+      }
 
+      V.uicalendar.updateEvent(event.id, cal, changes)
+    }
+  }
+}
+
+C.course_color('mmi1', '#0060C4', '#5CACFF', '#C5E2FF');
+C.course_color('mmi2', '#00A038', '#40E100', '#A6FF82');
+C.course_color('mmi3', '#9C0000', '#FF1919', '#FF7A7A');
+
+console.log(M.getEvents("mmi1"));
 C.init();
 
