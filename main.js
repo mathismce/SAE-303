@@ -36,12 +36,12 @@ V.init = function () {
 
   // IT4: sélection Année
   let year = document.querySelector("#year");
-  year.addEventListener("click", V.handler_clickOnYear);
+  year.addEventListener("click", C.handler_clickOnYear);
 
   let groups = document.querySelector('#groups');
   groups.addEventListener("change", C.handler_ChangeGroupe);
 
-  
+
 };
 
 
@@ -54,10 +54,22 @@ C.init = function () {
 };
 
 
+C.handler_clickOnYear = function (ev) {
+  if (ev.target.tagName == "INPUT") {
+    if (ev.target.checked == false) {
+      V.uicalendar.setCalendarVisibility(ev.target.id, false);
+      console.log('not checked');
+    }
+    if (ev.target.checked == true) {
+      V.uicalendar.setCalendarVisibility(ev.target.id, true);
+      console.log('checked');
+    }
 
+  }
+}
 
 // Itération3 : Couleur des cours
-C.course_color = function (cal, cm, td, tp) {
+/*C.course_color = function (cal, cm, td, tp) {
   let calendrier = M.getEvents(cal);
 
   for (let event of calendrier) {
@@ -85,31 +97,43 @@ C.course_color = function (cal, cm, td, tp) {
   }
 }
 
+
+
 C.course_color('mmi1', '#0060C4', '#5CACFF', '#C5E2FF');
 C.course_color('mmi2', '#00A038', '#40E100', '#A6FF82');
 C.course_color('mmi3', '#9C0000', '#FF1919', '#FF7A7A');
 
+*/
 
 
-C.handler_ChangeGroupe = function(ev){
+
+
+C.handler_ChangeGroupe = function (ev) {
   let allCalendars = M.getAllEvents();
   console.log(ev.target.value)
   let EventsByGroups = [];
-  
-  for(let calendar of allCalendars){
-    for(let event of calendar){
-      if(event.groups.includes(ev.target.value)){
+
+  for (let calendar of allCalendars) {
+    for (let event of calendar) {
+      if (event.groups.includes(ev.target.value)) {
         EventsByGroups.push(event);
       }
     }
   }
   V.uicalendar.clear();
-  
+
   V.uicalendar.createEvents(EventsByGroups);
 
-  
-}
+  V.update_color();
 
+
+  // C.course_color('mmi1', '#0060C4', '#5CACFF', '#C5E2FF');
+  // C.course_color('mmi2', '#00A038', '#40E100', '#A6FF82');
+  // C.course_color('mmi3', '#9C0000', '#FF1919', '#FF7A7A');
+
+
+
+}
 
 
 

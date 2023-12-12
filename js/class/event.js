@@ -1,5 +1,4 @@
 
-
 class Event {
     #id;
     #summary;
@@ -8,6 +7,7 @@ class Event {
     #end;
     #location;
     #groups;
+    #type;
 
     constructor(id, summary, description, start, end, location) {
         this.#id = id;
@@ -20,7 +20,22 @@ class Event {
         this.#groups = summary.slice(summary.lastIndexOf(',')+1);
         this.#groups = this.#groups.split('.');
         this.#groups = this.#groups.map( gr => gr.replace(/\s/g, "") );
+        
+        if (summary.includes('TP')){
+            this.#type = 'TP'
+        }
+        else if (summary.includes('TD')){
+            this.#type = 'TD'
+        }
+        else if (summary.includes('CM')){
+            this.#type = 'CM'
+        }
+        else {
+            this.#type = 'others'  
+        }
     }
+
+    
 
     get id() {
         return this.#id;
@@ -50,6 +65,10 @@ class Event {
         return this.#groups.map( gr => gr); // retourne une copie du tableau
     }
 
+    get type() {
+        return this.#type;
+    }
+
     // retourne un objet contenant les informations de l'événement
     // dans un format compatible avec Toast UI Calendar (voir https://nhn.github.io/tui.calendar/latest/EventObject)
     toObject() {
@@ -60,7 +79,8 @@ class Event {
             start: this.#start,
             end: this.#end,
             location: this.#location,
-            groups: this.#groups
+            groups: this.#groups,
+            type: this.type
         }
     }
 }

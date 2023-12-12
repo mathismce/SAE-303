@@ -26,6 +26,34 @@ V.uicalendar = new Calendar('#calendar', {
 
 });
 
+let colorMap = {
+  mmi1: {
+    'TP': '#C5E2FF',
+    'TD': '#5CACFF',
+    'CM': '#0060C4',
+    'others':'#0060C4'
+  },
+  mmi2: {
+    'TP': '#A6FF82',
+    'TD': '#40E100',
+    'CM': '#00A038',
+    'others':'#0060C4'
+  },
+  mmi3: {
+    'TP': '#FF7A7A',
+    'TD': '#FF1919',
+    'CM': '#9C0000',
+    'others':'#0060C4'
+  }
+};
+
+
+V.course_color = function (objectevents) {
+  for (let ev of objectevents) {
+      ev.backgroundColor = colorMap[ev.calendarId][ev.type];
+    }
+};
+
 
 // Initialisation du V
 
@@ -44,19 +72,7 @@ V.handler_clickOnWeek = function (ev) {
 }
 
 
-V.handler_clickOnYear = function(ev){
-  if(ev.target.tagName =="INPUT"){
-    if (ev.target.checked == false){
-      V.uicalendar.setCalendarVisibility(ev.target.id, false);
-      console.log('not checked');
-    }
-    if (ev.target.checked == true){
-      V.uicalendar.setCalendarVisibility(ev.target.id, true);
-      console.log('checked');
-    }
-    
-  }
-}
+
 
 
 // Itération 3 : Changer de couleur en fonction des années
