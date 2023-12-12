@@ -28,10 +28,6 @@ V.uicalendar = new Calendar('#calendar', {
 
 
 // Initialisation du V
-V.init = function () {
-  let nav = document.querySelector("nav");
-  nav.addEventListener("click", V.handler_clickOnWeek);
-};
 
 
 // Itération 2 : Changer de semaine
@@ -45,8 +41,23 @@ V.handler_clickOnWeek = function (ev) {
   else if (ev.target.id == "next") {
     V.uicalendar.next();
   }
-
 }
+
+
+V.handler_clickOnYear = function(ev){
+  if(ev.target.tagName =="INPUT"){
+    if (ev.target.checked == false){
+      V.uicalendar.setCalendarVisibility(ev.target.id, false);
+      console.log('not checked');
+    }
+    if (ev.target.checked == true){
+      V.uicalendar.setCalendarVisibility(ev.target.id, true);
+      console.log('checked');
+    }
+    
+  }
+}
+
 
 // Itération 3 : Changer de couleur en fonction des années
 V.update_color = function () {
@@ -72,5 +83,7 @@ V.update_color = function () {
   });
 
 }
+
+
 
 export { V };

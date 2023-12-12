@@ -1,25 +1,42 @@
 <!doctype html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MMI Calendar</title>
-  </head>
-  <body>
-  
-    <div>
-      <header>
-        <nav class="nav">
-         <button id="prev">Semaine Précédente</button>
-         <button id="current">Semaine Actuelle</button>
-         <button id="next">Semaine Suivante</button>
-        </nav>
-      </header>
 
-      <main id="calendar" style="height: 800px"></main>
-    </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MMI Calendar</title>
+</head>
 
-    <script type="module" src="/main.js"></script>
-    
-  </body>
+<body>
+
+  <div>
+    <header>
+      <nav class="nav">
+        <button id="prev">Semaine Précédente</button>
+        <button id="current">Semaine Actuelle</button>
+        <button id="next">Semaine Suivante</button>
+      </nav>
+    </header>
+    <ul id="sidebar">
+      <li>
+        <input type="checkbox" id="mmi1" checked >
+        <label for="mmi1">MMI 1</label>
+      </li>
+      <li>
+        <input type="checkbox" id="mmi2" checked >
+        <label cfor="mmi2">MMI 2</label>
+      </li>
+      <li>
+        <input type="checkbox" id="mmi3" checked>
+        <label  for="mmi3">MMI 3</label>
+      </li>
+      <hr>
+    </ul>
+    <main id="calendar" style="height: 800px"></main>
+  </div>
+
+  <script type="module" src="/main.js"></script>
+
+</body>
+
 </html>

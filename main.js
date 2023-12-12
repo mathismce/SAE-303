@@ -17,26 +17,6 @@ import { V } from "./js/view.js";
 // loadind data (and wait for it !)
 await M.init();
 
-// sample events for testing
-let edt = [
-  {
-    id: '1',
-    calendarId: '1',
-    title: 'my event',
-    category: 'time',
-    start: '2023-12-11T08:30:00',
-    end: '2023-12-11T10:30:00',
-  },
-  {
-    id: '2',
-    calendarId: '1',
-    title: 'second event',
-    category: 'time',
-    start: '2023-12-13T14:00:00',
-    end: '2023-12-13T15:30:00',
-  },
-]
-
 
 
 // creating events in the calendar
@@ -45,37 +25,50 @@ V.uicalendar.createEvents(M.getEvents('mmi2'));
 V.uicalendar.createEvents(M.getEvents('mmi3'));
 
 
+V.update_color();
+
+V.init = function () {
+  let nav = document.querySelector("nav");
+  nav.addEventListener("click", V.handler_clickOnWeek);
+
+  let year = document.querySelector("#sidebar");
+  year.addEventListener("click", V.handler_clickOnYear);
+};
 
 
 let C = {};
 
+C.init = function () {
+
+  V.init();
+
+};
 
 
-V.init();
-V.update_color();
 
 
-C.course_color = function (cal, cm, td, tp ){
+// Itération3 : Couleur des cours
+C.course_color = function (cal, cm, td, tp) {
   let calendrier = M.getEvents(cal);
 
   for (let event of calendrier) {
     if (event.title.includes('TP')) {
       let changes = {
-        backgroundColor : tp
+        backgroundColor: tp
       }
 
       V.uicalendar.updateEvent(event.id, cal, changes)
     }
     else if (event.title.includes('TD')) {
       let changes = {
-        backgroundColor : td
+        backgroundColor: td
       }
 
       V.uicalendar.updateEvent(event.id, cal, changes)
     }
     else if (event.title.includes('CM')) {
       let changes = {
-        backgroundColor : cm
+        backgroundColor: cm
       }
 
       V.uicalendar.updateEvent(event.id, cal, changes)
@@ -87,6 +80,9 @@ C.course_color('mmi1', '#0060C4', '#5CACFF', '#C5E2FF');
 C.course_color('mmi2', '#00A038', '#40E100', '#A6FF82');
 C.course_color('mmi3', '#9C0000', '#FF1919', '#FF7A7A');
 
-console.log(M.getEvents("mmi1"));
+
 C.init();
+
+
+
 

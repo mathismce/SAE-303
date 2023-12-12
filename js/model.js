@@ -1,4 +1,3 @@
-
 import ical from 'ical';
 import { EventManager } from './class/event-manager';
 
@@ -36,6 +35,8 @@ M.init = async function() {
     Events.mmi3 = new EventManager('mmi3', 'MMI 3', 'Agenda des MMI 3');
     Events.mmi3.addEvents(data3);
 }
+
+
 
 export { M };
 
