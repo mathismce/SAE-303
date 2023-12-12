@@ -16,6 +16,15 @@ M.getEvents = function(annee) {
     return null;
 }
 
+M.getAllEvents = function() {
+    let allEv = []
+    for (let ev in Events){
+        allEv.push(Events[ev].toObject())
+    }
+
+    return allEv;
+}
+
 M.init = async function() {
     let data = await fetch('./data/mmi1.ics');
     data = await data.text();
@@ -35,7 +44,6 @@ M.init = async function() {
     Events.mmi3 = new EventManager('mmi3', 'MMI 3', 'Agenda des MMI 3');
     Events.mmi3.addEvents(data3);
 }
-
 
 
 export { M };

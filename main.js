@@ -27,12 +27,21 @@ V.uicalendar.createEvents(M.getEvents('mmi3'));
 
 V.update_color();
 
+
+// Initialisation du V
 V.init = function () {
+  // IT2: sélection semaine
   let nav = document.querySelector("nav");
   nav.addEventListener("click", V.handler_clickOnWeek);
 
-  let year = document.querySelector("#sidebar");
+  // IT4: sélection Année
+  let year = document.querySelector("#year");
   year.addEventListener("click", V.handler_clickOnYear);
+
+  let groups = document.querySelector('#groups');
+  groups.addEventListener("change", C.handler_ChangeGroupe);
+
+  
 };
 
 
@@ -79,6 +88,29 @@ C.course_color = function (cal, cm, td, tp) {
 C.course_color('mmi1', '#0060C4', '#5CACFF', '#C5E2FF');
 C.course_color('mmi2', '#00A038', '#40E100', '#A6FF82');
 C.course_color('mmi3', '#9C0000', '#FF1919', '#FF7A7A');
+
+
+
+C.handler_ChangeGroupe = function(ev){
+  let allCalendars = M.getAllEvents();
+  console.log(ev.target.value)
+  let EventsByGroups = [];
+  
+  for(let calendar of allCalendars){
+    for(let event of calendar){
+      if(event.groups.includes(ev.target.value)){
+        EventsByGroups.push(event);
+      }
+    }
+  }
+  V.uicalendar.clear();
+  
+  V.uicalendar.createEvents(EventsByGroups);
+
+  
+}
+
+
 
 
 C.init();
