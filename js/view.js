@@ -73,6 +73,8 @@ V.handler_clickOnWeek = function (ev) {
   else if (ev.target.id == "next") {
     V.uicalendar.next();
   }
+
+  
 }
 
 
@@ -96,6 +98,9 @@ V.handler_clickOnView = function (ev) {
   else if (ev.target.id == "month") {
     V.uicalendar.changeView('month');
   }
+
+  localStorage.removeItem('view');
+  localStorage.setItem('view', ev.target.id)
 }
 
 

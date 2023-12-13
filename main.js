@@ -49,6 +49,9 @@ C.init = function () {
   let input = document.querySelector("#search");
   input.addEventListener("keyup", C.handler_Research);
 
+
+
+
   V.Format();
 
   let all = M.getConcatEvents();
@@ -56,6 +59,20 @@ C.init = function () {
   V.course_color(all)
 
   V.uicalendar.createEvents(all);
+
+  if (localStorage.getItem('view') != undefined) {
+    let view = localStorage.getItem("view");
+    V.uicalendar.changeView(view);
+  }
+
+  const selectedYear = localStorage.getItem('selectedYear');
+  const yearInput = selectedYear && document.getElementById(selectedYear);
+
+  if (yearInput) {
+    yearInput.checked = true;
+    C.handler_clickOnYear({ target: yearInput });
+
+  }
 };
 
 
@@ -78,13 +95,17 @@ C.handler_clickOnYear = function (ev) {
       }
     }
 
+    
+
+    localStorage.removeItem('selectedYear')
+
+    localStorage.setItem('selectedYear', JSON.stringify(eventsByYear));
+
     V.uicalendar.clear()
 
     V.course_color(eventsByYear)
 
     V.uicalendar.createEvents(eventsByYear)
-
-
   }
 
 }
