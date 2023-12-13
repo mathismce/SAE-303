@@ -42,6 +42,10 @@ V.init = function () {
   groups.addEventListener("change", C.handler_ChangeGroupe);
 
 
+  let input = document.querySelector("#search");
+    input.addEventListener("keyup", C.handler_Research);
+
+
 };
 
 
@@ -105,6 +109,17 @@ C.handler_ChangeGroupe = function (ev) {
   // C.course_color('mmi1', '#0060C4', '#5CACFF', '#C5E2FF');
   // C.course_color('mmi2', '#00A038', '#40E100', '#A6FF82');
   // C.course_color('mmi3', '#9C0000', '#FF1919', '#FF7A7A');
+
+}
+
+
+// Itération 6 : Barre de Recherche
+C.handler_Research = function(ev){
+  let word = ev.target.value;
+  let research = M.getResearchEvents(word);
+  V.uicalendar.clear(); // Efface les événements actuels du calendrier;
+  V.course_color(research);
+  V.uicalendar.createEvents(research);
 
 }
 

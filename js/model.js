@@ -10,24 +10,42 @@ let Events = {
 let M = {};
 
 
-M.getEvents = function(annee) {
-    if ( annee in Events ) {
+M.getEvents = function (annee) {
+    if (annee in Events) {
         return Events[annee].toObject();
     }
     return null;
 }
 
 
-M.getConcatEvents = function() {
+M.getConcatEvents = function () {
     let allEv = []
-    for (let ev in Events){
+    for (let ev in Events) {
         allEv = allEv.concat(Events[ev].toObject());
     }
 
     return allEv;
 }
 
-M.init = async function() {
+// Itération 6 : Barre de Recherche
+M.getResearchEvents = function (chaine) {
+    let ReasEvents = []
+
+    for (let ev of M.getConcatEvents()) {
+        for (let elt in ev) {
+            let elmt = ev[elt].toString().toLocaleLowerCase();
+            if (elmt.toLowerCase().includes(chaine.toLowerCase())) {
+
+                if (ReasEvents.includes(ev) == false) {
+                    ReasEvents.push(ev);
+
+                }
+            }
+        }
+    } return structuredClone(ReasEvents);
+}
+
+M.init = async function () {
     let data = await fetch('./data/mmi1.ics');
     data = await data.text();
     data = ical.parseICS(data);
