@@ -73,6 +73,19 @@ V.course_color = function (objectevents) {
 };
 
 
+// Itération 8 : Changer de vue
+V.handler_clickOnView = function (ev) {
+  if (ev.target.id == "day") {
+    V.uicalendar.changeView('day');
+  }
+  else if (ev.target.id == "week") {
+    V.uicalendar.changeView('week');
+
+  }
+  else if (ev.target.id == "month") {
+    V.uicalendar.changeView('month');
+  }
+}
 
 
 export { V };

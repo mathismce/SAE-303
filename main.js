@@ -29,21 +29,25 @@ V.uicalendar.createEvents(M.getEvents('mmi3'));
 
 // Initialisation du V
 V.init = function () {
-  // IT2: sélection semaine
+  // IT2: Sélection semaine
   let nav = document.querySelector("nav");
   nav.addEventListener("click", V.handler_clickOnWeek);
 
-  // IT4: sélection Année
+  // IT4: Sélection Année
   let year = document.querySelector("#year");
   year.addEventListener("click", C.handler_clickOnYear);
 
-  // IT5: sélection Groupe
+  // IT5: Sélection Groupe
   let groups = document.querySelector('#groups');
   groups.addEventListener("change", C.handler_ChangeGroupe);
 
-
+  // IT6-7: Barre de recherche
   let input = document.querySelector("#search");
-    input.addEventListener("keyup", C.handler_Research);
+  input.addEventListener("keyup", C.handler_Research);
+
+  // IT8: Sélection vue
+  let view = document.querySelector(".view");
+  view.addEventListener("click", V.handler_clickOnView);
 
 
 };
@@ -124,7 +128,7 @@ C.handler_ChangeGroupe = function (ev) {
 }*/
 
 C.handler_Research = function (ev) {
-  let motsCles = ev.target.value.split(' '); 
+  let motsCles = ev.target.value.split(' ');
   let research = M.getResearchEvents(motsCles);
   V.uicalendar.clear(); // Efface les événements actuels du calendrier;
   V.course_color(research);
