@@ -28,7 +28,7 @@ M.getConcatEvents = function () {
 }
 
 // Itération 6 : Barre de Recherche
-M.getResearchEvents = function (chaine) {
+/*M.getResearchEvents = function (chaine) {
     let ReasEvents = []
 
     for (let ev of M.getConcatEvents()) {
@@ -43,6 +43,30 @@ M.getResearchEvents = function (chaine) {
             }
         }
     } return structuredClone(ReasEvents);
+}*/
+
+
+//Itération 6-7 : Barre de recherche
+M.getResearchEvents = function (motsCles) {
+    let ReasEvents = [];
+
+    for (let ev of M.getConcatEvents()) {
+        let eventString = JSON.stringify(ev).toLowerCase();
+        let matchesAllKeywords = true;
+
+        for (let motCle of motsCles) {
+            if (!eventString.includes(motCle.toLowerCase())) {
+                matchesAllKeywords = false;
+                break;
+            }
+        }
+
+        if (matchesAllKeywords) {
+            ReasEvents.push(ev);
+        }
+    }
+
+    return structuredClone(ReasEvents);
 }
 
 M.init = async function () {

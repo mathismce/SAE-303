@@ -114,13 +114,21 @@ C.handler_ChangeGroupe = function (ev) {
 
 
 // Itération 6 : Barre de Recherche
-C.handler_Research = function(ev){
+/*C.handler_Research = function(ev){
   let word = ev.target.value;
   let research = M.getResearchEvents(word);
   V.uicalendar.clear(); // Efface les événements actuels du calendrier;
   V.course_color(research);
   V.uicalendar.createEvents(research);
 
+}*/
+
+C.handler_Research = function (ev) {
+  let motsCles = ev.target.value.split(' '); 
+  let research = M.getResearchEvents(motsCles);
+  V.uicalendar.clear(); // Efface les événements actuels du calendrier;
+  V.course_color(research);
+  V.uicalendar.createEvents(research);
 }
 
 
