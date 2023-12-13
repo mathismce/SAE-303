@@ -23,16 +23,16 @@ class Event {
         
         if (summary.includes('TP')){
             this.#type = 'TP'
-        }
+            }
         else if (summary.includes('TD')){
             this.#type = 'TD'
-        }
+            }
         else if (summary.includes('CM')){
             this.#type = 'CM'
-        }
+            }
         else {
             this.#type = 'others'  
-        }
+            }
     }
 
     
@@ -80,7 +80,7 @@ class Event {
             end: this.#end,
             location: this.#location,
             groups: this.#groups,
-            type: this.type
+            type: this.#type
         }
     }
 }

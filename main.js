@@ -20,13 +20,12 @@ await M.init();
 
 
 // creating events in the calendar
-V.uicalendar.createEvents(M.getEvents('mmi1'));
+/*V.uicalendar.createEvents(M.getEvents('mmi1'));
 V.uicalendar.createEvents(M.getEvents('mmi2'));
 V.uicalendar.createEvents(M.getEvents('mmi3'));
 
 
-V.update_color();
-
+*/
 
 // Initialisation du V
 V.init = function () {
@@ -38,6 +37,7 @@ V.init = function () {
   let year = document.querySelector("#year");
   year.addEventListener("click", C.handler_clickOnYear);
 
+  // IT5: sélection Groupe
   let groups = document.querySelector('#groups');
   groups.addEventListener("change", C.handler_ChangeGroupe);
 
@@ -54,84 +54,57 @@ C.init = function () {
 };
 
 
+// Fonction IT4 : Tri par année
 C.handler_clickOnYear = function (ev) {
   if (ev.target.tagName == "INPUT") {
-    if (ev.target.checked == false) {
-      V.uicalendar.setCalendarVisibility(ev.target.id, false);
-      console.log('not checked');
+    let allEvents = M.getConcatEvents();
+
+    let eventsByYear = [];
+
+    let years = document.querySelectorAll('#year li input')
+
+    for (let y of years) {
+      if (y.checked == true) {
+        for (let event of allEvents) {
+          if (event.calendarId == y.id) {
+            eventsByYear.push(event);
+          }
+        }
+      }
     }
-    if (ev.target.checked == true) {
-      V.uicalendar.setCalendarVisibility(ev.target.id, true);
-      console.log('checked');
-    }
+
+    V.uicalendar.clear()
+
+    V.course_color(eventsByYear)
+
+    V.uicalendar.createEvents(eventsByYear)
 
   }
-}
 
-// Itération3 : Couleur des cours
-/*C.course_color = function (cal, cm, td, tp) {
-  let calendrier = M.getEvents(cal);
-
-  for (let event of calendrier) {
-    if (event.title.includes('TP')) {
-      let changes = {
-        backgroundColor: tp
-      }
-
-      V.uicalendar.updateEvent(event.id, cal, changes)
-    }
-    else if (event.title.includes('TD')) {
-      let changes = {
-        backgroundColor: td
-      }
-
-      V.uicalendar.updateEvent(event.id, cal, changes)
-    }
-    else if (event.title.includes('CM')) {
-      let changes = {
-        backgroundColor: cm
-      }
-
-      V.uicalendar.updateEvent(event.id, cal, changes)
-    }
-  }
 }
 
 
-
-C.course_color('mmi1', '#0060C4', '#5CACFF', '#C5E2FF');
-C.course_color('mmi2', '#00A038', '#40E100', '#A6FF82');
-C.course_color('mmi3', '#9C0000', '#FF1919', '#FF7A7A');
-
-*/
-
-
-
-
+// Fonction IT5 : Tri par année
 C.handler_ChangeGroupe = function (ev) {
-  let allCalendars = M.getAllEvents();
+  let allCalendars = M.getConcatEvents();
   console.log(ev.target.value)
   let EventsByGroups = [];
 
-  for (let calendar of allCalendars) {
-    for (let event of calendar) {
-      if (event.groups.includes(ev.target.value)) {
-        EventsByGroups.push(event);
-      }
+  for (let event of allCalendars) {
+    if (event.groups.includes(ev.target.value)) {
+      EventsByGroups.push(event);
     }
   }
+
   V.uicalendar.clear();
 
+  V.course_color(EventsByGroups);
+
   V.uicalendar.createEvents(EventsByGroups);
-
-  V.update_color();
-
 
   // C.course_color('mmi1', '#0060C4', '#5CACFF', '#C5E2FF');
   // C.course_color('mmi2', '#00A038', '#40E100', '#A6FF82');
   // C.course_color('mmi3', '#9C0000', '#FF1919', '#FF7A7A');
-
-
 
 }
 
@@ -139,6 +112,12 @@ C.handler_ChangeGroupe = function (ev) {
 
 C.init();
 
+let all = M.getConcatEvents();
 
+V.course_color(all)
+
+V.uicalendar.createEvents(all);
+
+export { C };
 
 
