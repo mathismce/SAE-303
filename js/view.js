@@ -3,25 +3,36 @@ import '@toast-ui/calendar/dist/toastui-calendar.min.css';
 
 let V = {};
 
+V.init = function () {
+  // IT2: Sélection semaine
+  let nav = document.querySelector("nav");
+  nav.addEventListener("click", V.handler_clickOnWeek);
+
+  // IT8: Sélection vue
+  let view = document.querySelector(".view");
+  view.addEventListener("click", V.handler_clickOnView);
+
+};
+
 // Itération 3 : Map pour les couleurs des groupes 
 let colorMap = {
   mmi1: {
-    TP: '#C5E2FF',
-    TD: '#5CACFF',
-    CM: '#0060C4',
-    others:'#0B1A4F'
+    TP: '#7E93FF',
+    TD: '#3F497F',
+    CM: '#202540',
+    others:'#9173B4'
   },
   mmi2: {
-    TP: '#A6FF82',
-    TD: '#40E100',
-    CM: '#00A038',
-    others:'#094213'
+    TP: '#F8A968',
+    TD: '#F27127',
+    CM: '#8C0303',
+    others:'#E9B940'
   },
   mmi3: {
-    TP: '#FF7A7A',
-    TD: '#FF1919',
-    CM: '#9C0000',
-    others:'#640A0A'
+    TP: '#F2969E',
+    TD: '#C24457',
+    CM: '#961A1E',
+    others:'#FF5233'
   }
 };
 
@@ -87,5 +98,14 @@ V.handler_clickOnView = function (ev) {
   }
 }
 
+
+V.Format = function(){
+  if(window.innerWidth <= 768){
+    V.uicalendar.changeView('day');
+  }
+  else {
+    V.uicalendar.changeView('week');
+  }
+}
 
 export { V };

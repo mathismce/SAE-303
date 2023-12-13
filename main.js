@@ -28,29 +28,7 @@ V.uicalendar.createEvents(M.getEvents('mmi3'));
 */
 
 // Initialisation du V
-V.init = function () {
-  // IT2: Sélection semaine
-  let nav = document.querySelector("nav");
-  nav.addEventListener("click", V.handler_clickOnWeek);
 
-  // IT4: Sélection Année
-  let year = document.querySelector("#year");
-  year.addEventListener("click", C.handler_clickOnYear);
-
-  // IT5: Sélection Groupe
-  let groups = document.querySelector('#groups');
-  groups.addEventListener("change", C.handler_ChangeGroupe);
-
-  // IT6-7: Barre de recherche
-  let input = document.querySelector("#search");
-  input.addEventListener("keyup", C.handler_Research);
-
-  // IT8: Sélection vue
-  let view = document.querySelector(".view");
-  view.addEventListener("click", V.handler_clickOnView);
-
-
-};
 
 
 let C = {};
@@ -59,6 +37,25 @@ C.init = function () {
 
   V.init();
 
+  // IT4: Sélection Année
+  let year = document.querySelector("#year");
+  year.addEventListener("click", C.handler_clickOnYear);
+
+  // IT5: Sélection Groupe
+  let groups = document.querySelector('#groups');
+  groups.addEventListener("change", C.handler_ChangeGroup);
+
+  // IT6-7: Barre de recherche
+  let input = document.querySelector("#search");
+  input.addEventListener("keyup", C.handler_Research);
+
+  V.Format();
+
+  let all = M.getConcatEvents();
+
+  V.course_color(all)
+
+  V.uicalendar.createEvents(all);
 };
 
 
@@ -87,13 +84,14 @@ C.handler_clickOnYear = function (ev) {
 
     V.uicalendar.createEvents(eventsByYear)
 
+
   }
 
 }
 
 
 // Fonction IT5 : Tri par année
-C.handler_ChangeGroupe = function (ev) {
+C.handler_ChangeGroup = function (ev) {
   let allCalendars = M.getConcatEvents();
   console.log(ev.target.value)
   let EventsByGroups = [];
@@ -139,11 +137,7 @@ C.handler_Research = function (ev) {
 
 C.init();
 
-let all = M.getConcatEvents();
 
-V.course_color(all)
-
-V.uicalendar.createEvents(all);
 
 export { C };
 
