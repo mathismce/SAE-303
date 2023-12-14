@@ -20,19 +20,19 @@ let colorMap = {
     TP: '#7E93FF',
     TD: '#3F497F',
     CM: '#202540',
-    others:'#9173B4'
+    others: '#79CADC'
   },
   mmi2: {
     TP: '#F8A968',
     TD: '#F27127',
     CM: '#8C0303',
-    others:'#E9B940'
+    others: '#E9B940'
   },
   mmi3: {
     TP: '#F2969E',
     TD: '#C24457',
     CM: '#961A1E',
-    others:'#FF5233'
+    others: '#FF5233'
   }
 };
 
@@ -54,6 +54,8 @@ V.uicalendar = new Calendar('#calendar', {
   theme: {
     common: {
       backgroundColor: '#E0E0E0',
+    }, // Ajout de la virgule ici
+    week: {
       border: '1px solid #818545',
       gridSelection: {
         backgroundColor: 'rgba(81, 230, 92, 0.05)',
@@ -63,18 +65,16 @@ V.uicalendar = new Calendar('#calendar', {
         color: 'rgba(64, 64, 255, 0.5)',
       },
       today: {
-        color: '#ffffff',
+        color: '#7B49AA',
+        fontWeight: 'bold',
       },
     },
   },
-  
   template: {
     time: function (event) {
       return `<span style="color: white;">${event.title}</span>`;
     }
   },
-
-
 });
 
 
@@ -91,15 +91,15 @@ V.handler_clickOnWeek = function (ev) {
     V.uicalendar.next();
   }
 
-  
+
 }
 
 
 // Itération 3 : Fonction Couleurs des cours
 V.course_color = function (objectevents) {
   for (let ev of objectevents) {
-      ev.backgroundColor = colorMap[ev.calendarId][ev.type];
-    }
+    ev.backgroundColor = colorMap[ev.calendarId][ev.type];
+  }
 };
 
 
@@ -121,8 +121,8 @@ V.handler_clickOnView = function (ev) {
 }
 
 
-V.Format = function(){
-  if(window.innerWidth <= 768){
+V.Format = function () {
+  if (window.innerWidth <= 768) {
     V.uicalendar.changeView('day');
   }
   else {
