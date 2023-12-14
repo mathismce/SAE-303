@@ -51,7 +51,6 @@ C.init = function () {
 
 
 
-
   V.Format();
 
   let all = M.getConcatEvents();
@@ -80,12 +79,10 @@ C.init = function () {
 
   // Itération 10 : Garder les préférences de l'utilisateur (Group)
   const selectedGroup = localStorage.getItem('selectedGroup');
-  const eventsByGroup = selectedGroup && JSON.parse(selectedGroup);
+  const eventsByGroup = selectedGroup
 
   if (eventsByGroup) {
-    V.uicalendar.clear();
-    V.course_color(eventsByGroup);
-    V.uicalendar.createEvents(eventsByGroup);
+    C.handler_ChangeGroup({target:{value: selectedGroup}});
   };
 
 };
@@ -141,7 +138,7 @@ C.init = function () {
     localStorage.removeItem('selectedYear');
     localStorage.removeItem('selectedGroup');
 
-    localStorage.setItem('selectedGroup', JSON.stringify(EventsByGroups));
+    localStorage.setItem('selectedGroup', ev.target.value);
 
     V.uicalendar.clear();
 
