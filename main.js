@@ -60,106 +60,125 @@ C.init = function () {
 
   V.uicalendar.createEvents(all);
 
+
+  // Itération 10 : Garder les préférences de l'utilisateur (Vue)
   if (localStorage.getItem('view') != undefined) {
     let view = localStorage.getItem("view");
     V.uicalendar.changeView(view);
   }
 
+
+  // Itération 10 : Garder les préférences de l'utilisateur (Année)
   const selectedYear = localStorage.getItem('selectedYear');
-  const yearInput = selectedYear && document.getElementById(selectedYear);
+  const eventsByYear = selectedYear && JSON.parse(selectedYear);
 
-  if (yearInput) {
-    yearInput.checked = true;
-    C.handler_clickOnYear({ target: yearInput });
+  if (eventsByYear) {
+    V.uicalendar.clear();
+    V.course_color(eventsByYear);
+    V.uicalendar.createEvents(eventsByYear);
+  };
 
-  }
+  // Itération 10 : Garder les préférences de l'utilisateur (Group)
+  const selectedGroup = localStorage.getItem('selectedGroup');
+  const eventsByGroup = selectedGroup && JSON.parse(selectedGroup);
+
+  if (eventsByGroup) {
+    V.uicalendar.clear();
+    V.course_color(eventsByGroup);
+    V.uicalendar.createEvents(eventsByGroup);
+  };
+
 };
 
 
-// Fonction IT4 : Tri par année
-C.handler_clickOnYear = function (ev) {
-  if (ev.target.tagName == "INPUT") {
-    let allEvents = M.getConcatEvents();
+  // Fonction IT4 : Tri par année
+  C.handler_clickOnYear = function (ev) {
+    if (ev.target.tagName == "INPUT") {
+      let allEvents = M.getConcatEvents();
 
-    let eventsByYear = [];
+      let eventsByYear = [];
 
-    let years = document.querySelectorAll('#year li input')
+      let years = document.querySelectorAll('#year li input')
 
-    for (let y of years) {
-      if (y.checked == true) {
-        for (let event of allEvents) {
-          if (event.calendarId == y.id) {
-            eventsByYear.push(event);
+      for (let y of years) {
+        if (y.checked == true) {
+          for (let event of allEvents) {
+            if (event.calendarId == y.id) {
+              eventsByYear.push(event);
+            }
           }
         }
       }
+
+
+      localStorage.removeItem('selectedGroup')
+      localStorage.removeItem('selectedYear')
+
+      localStorage.setItem('selectedYear', JSON.stringify(eventsByYear));
+
+      V.uicalendar.clear()
+
+      V.course_color(eventsByYear)
+
+      V.uicalendar.createEvents(eventsByYear)
     }
 
-    
-
-    localStorage.removeItem('selectedYear')
-
-    localStorage.setItem('selectedYear', JSON.stringify(eventsByYear));
-
-    V.uicalendar.clear()
-
-    V.course_color(eventsByYear)
-
-    V.uicalendar.createEvents(eventsByYear)
   }
 
-}
 
+  // Fonction IT5 : Tri par groupe
+  C.handler_ChangeGroup = function (ev) {
+    let allCalendars = M.getConcatEvents();
+    console.log(ev.target.value)
+    let EventsByGroups = [];
 
-// Fonction IT5 : Tri par année
-C.handler_ChangeGroup = function (ev) {
-  let allCalendars = M.getConcatEvents();
-  console.log(ev.target.value)
-  let EventsByGroups = [];
-
-  for (let event of allCalendars) {
-    if (event.groups.includes(ev.target.value)) {
-      EventsByGroups.push(event);
+    for (let event of allCalendars) {
+      if (event.groups.includes(ev.target.value)) {
+        EventsByGroups.push(event);
+      }
     }
+
+    localStorage.removeItem('selectedYear');
+    localStorage.removeItem('selectedGroup');
+
+    localStorage.setItem('selectedGroup', JSON.stringify(EventsByGroups));
+
+    V.uicalendar.clear();
+
+    V.course_color(EventsByGroups);
+
+    V.uicalendar.createEvents(EventsByGroups);
+
+    // C.course_color('mmi1', '#0060C4', '#5CACFF', '#C5E2FF');
+    // C.course_color('mmi2', '#00A038', '#40E100', '#A6FF82');
+    // C.course_color('mmi3', '#9C0000', '#FF1919', '#FF7A7A');
+
   }
 
-  V.uicalendar.clear();
 
-  V.course_color(EventsByGroups);
+  // Itération 6 : Barre de Recherche
+  /*C.handler_Research = function(ev){
+    let word = ev.target.value;
+    let research = M.getResearchEvents(word);
+    V.uicalendar.clear(); // Efface les événements actuels du calendrier;
+    V.course_color(research);
+    V.uicalendar.createEvents(research);
+  
+  }*/
 
-  V.uicalendar.createEvents(EventsByGroups);
-
-  // C.course_color('mmi1', '#0060C4', '#5CACFF', '#C5E2FF');
-  // C.course_color('mmi2', '#00A038', '#40E100', '#A6FF82');
-  // C.course_color('mmi3', '#9C0000', '#FF1919', '#FF7A7A');
-
-}
-
-
-// Itération 6 : Barre de Recherche
-/*C.handler_Research = function(ev){
-  let word = ev.target.value;
-  let research = M.getResearchEvents(word);
-  V.uicalendar.clear(); // Efface les événements actuels du calendrier;
-  V.course_color(research);
-  V.uicalendar.createEvents(research);
-
-}*/
-
-C.handler_Research = function (ev) {
-  let motsCles = ev.target.value.split(' ');
-  let research = M.getResearchEvents(motsCles);
-  V.uicalendar.clear(); // Efface les événements actuels du calendrier;
-  V.course_color(research);
-  V.uicalendar.createEvents(research);
-}
+  C.handler_Research = function (ev) {
+    let motsCles = ev.target.value.split(' ');
+    let research = M.getResearchEvents(motsCles);
+    V.uicalendar.clear(); // Efface les événements actuels du calendrier;
+    V.course_color(research);
+    V.uicalendar.createEvents(research);
+  }
 
 
 
-C.init();
+  C.init();
 
 
 
-export { C };
-
+  export { C };
 
