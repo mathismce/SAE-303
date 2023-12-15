@@ -69,12 +69,19 @@ C.init = function () {
 
   // Itération 10 : Garder les préférences de l'utilisateur (Année)
   const selectedYear = localStorage.getItem('selectedYear');
-  const eventsByYear = selectedYear && JSON.parse(selectedYear);
+  const eventsByYear = JSON.parse(selectedYear);
 
   if (eventsByYear) {
-    V.uicalendar.clear();
-    V.course_color(eventsByYear);
-    V.uicalendar.createEvents(eventsByYear);
+
+    let allInput = document.querySelectorAll('#year li input');
+    
+      for(let y of allInput){
+        if(selectedYear.includes(y.id)){
+          y.checked = true
+        }
+      }
+      C.handler_clickOnYear({target:{tagName:'INPUT'}})
+    
   };
 
   // Itération 10 : Garder les préférences de l'utilisateur (Group)
@@ -95,10 +102,14 @@ C.init = function () {
 
       let eventsByYear = [];
 
-      let years = document.querySelectorAll('#year li input')
+      let years = document.querySelectorAll('#year li input');
+
+      let yearStorage = [];
 
       for (let y of years) {
         if (y.checked == true) {
+
+          yearStorage.push(y.id);
           for (let event of allEvents) {
             if (event.calendarId == y.id) {
               eventsByYear.push(event);
@@ -111,7 +122,7 @@ C.init = function () {
       localStorage.removeItem('selectedGroup')
       localStorage.removeItem('selectedYear')
 
-      localStorage.setItem('selectedYear', JSON.stringify(eventsByYear));
+      localStorage.setItem('selectedYear',  JSON.stringify(yearStorage));
 
       V.uicalendar.clear()
 
