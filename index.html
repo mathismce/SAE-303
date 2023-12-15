@@ -9,39 +9,40 @@
 </head>
 
 <body>
-    <header>
-      <div class="container1">
-        <h1>Calendrier 2023-2024</h1>
-        <nav class="container1__nav" id="nav">
-          <button class="container1__nav_prev" id="prev"><img id="prev" src="./asset/icon-prev.svg"
-              alt="icon-précdent"></button>
-          <button class="container1__nav_current" id="current">En cours</button>
-          <button class="container1__nav_next" id="next"><img id="next" src="./asset/icon-next.svg"
-              alt="icon-précdent"></button>
-        </nav>
-      </div>
-      <div>
-        <nav class="container2" id="view">
-          <button class="container2__day" id="day"><img id="day" src="./asset/icon-day.svg" alt="day"></button>
-          <button class="container2__week" id="week"><img id="week" src="./asset/icon-week.svg" alt="week"></button>
-          <button class="container2__month" id="month"><img id="month" src="./asset/icon-month.svg" alt="month"></button>
-        </nav>
-        <ul class="" id="year">
-          <li>
-            <input type="checkbox" id="mmi1">
+  <header class="container">
+    <div class="container1">
+      <h1 class="container1__txt">Calendrier 2023-2024</h1>
+      <nav class="container1__nav" id="nav">
+        <button class="container1__nav_prev" id="prev"><img id="prev" src="./asset/icon-prev.svg"
+            alt="icon-précdent"></button>
+        <button class="container1__nav_current" id="current">Aujourd'hui</button>
+        <button class="container1__nav_next" id="next"><img id="next" src="./asset/icon-next.svg"
+            alt="icon-précdent"></button>
+      </nav>
+    </div>
+    <div class="container__1">
+      <nav class="container2__nav" id="view">
+        <button class="container1__device" id="day">Jour</button>
+        <button class="container1__device" id="week">Semaine</button>
+        <button class="container1__device" id="month">Mois</button>
+      </nav>
+      <div class="container3">
+        <ul class="container3__année" id="year">
+          <li class="container3__elt">
+            <input class="container3__checkbox" type="checkbox" id="mmi1">
             <label for="mmi1">MMI 1</label>
           </li>
-          <li>
-            <input type="checkbox" id="mmi2">
+          <li class="container3__elt">
+            <input class="container3__checkbox" type="checkbox" id="mmi2">
             <label cfor="mmi2">MMI 2</label>
           </li>
-          <li>
-            <input type="checkbox" id="mmi3">
+          <li class="container3__elt">
+            <input class="container3__checkbox" type="checkbox" id="mmi3">
             <label for="mmi3">MMI 3</label>
           </li>
-          <hr>
+          
         </ul>
-        <select name="groups" id="groups">
+        <select class="container3__select" name="groups" id="groups">
           <option value="">-- Choisir un groupe --</option>
           <option value="BUT1-G1">BUT1-G1</option>
           <option value="BUT1-G21">BUT1-G21</option>
@@ -56,14 +57,13 @@
           <option value="BUT3-G22">BUT3-G22</option>
           <option value="BUT3-G3">BUT3-G3</option>
         </select>
-        <br>
-        </br>
-        <form action="/rechercher" method="get">
-          <label for="search">Rechercher : </label>
-          <input type="text" id="search" name="q" placeholder="Recherche...">
-        </form>
       </div>
-    </header>
+      <form action="/rechercher" method="get">
+        <label for="search"></label>
+        <input class="container3__recherche" type="text" id="search" name="q" placeholder="Recherche...">
+      </form>
+    </div>
+  </header>
 
   <main id="calendar" style="height: 800px"></main>
   </div>

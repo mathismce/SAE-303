@@ -1,9 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Lexend&display=swap');
 
-:root{
-    --primary-purple: #7B49AA;
-    --prmimary-white: #ffffff;
+:root {
+  --primary-purple: #7B49AA;
+  --primary-white: #ffffff;
+  --primary-grey: #666666;
+
 }
+
 /* Box sizing rules */
 *,
 *::before,
@@ -65,7 +68,7 @@ picture {
 }
 
 /* Natural flow and rhythm in articles by default */
-article > * + * {
+article>*+* {
   margin-top: 1em;
 }
 
@@ -94,65 +97,173 @@ img:not([alt]) {
 
 
 body {
-    background-color: #E0E0E0;
-    font-family:'Lexend';
+  background-color: #E0E0E0;
+  font-family: 'Lexend';
+  padding: 1rem;
 }
 
-.container1{
-
-}
-
-.container1__nav{
- display: flex;
- justify-content: center;
- width: 10rem;
- background-color: var(--prmimary-white);
- border-radius: .5rem;
- border:var(--primary-purple) solid 2px;
-}
-
-.container1__nav_prev{
-  border: none;
-  background-color: rgba(0, 0, 0, 0);
-  cursor: pointer;
-}
-
-.container1__nav_current{
-  border: none;
-  background-color:rgba(0, 0, 0, 0);
-  cursor: pointer;
-}
-
-.container1__nav_next{
-  border: none;
-  background-color: rgba(0, 0, 0, 0);
-  cursor: pointer;
-}
-
-
-.container2 {
+.container{
   display: flex;
- justify-content: center;
- width: 10rem;
- background-color: var(--prmimary-white);
- border-radius: .5rem;
- border:var(--primary-purple) solid 2px;
+  flex-direction: column;
+  gap: 1rem;
 }
 
-.container2__day {
+.container__1 {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.container1 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.container1__txt {
+  font-size: 1rem;
+}
+
+
+.container2__nav {
+  display: flex;
+  justify-content: center;
+  padding: 0.2rem 0rem;
+  width: 12rem;
+  background-color: var(--primary-white);
+  border-radius: .5rem;
+  border: var(--primary-grey) solid 2px;
+}
+
+
+.container1__device {
   border: none;
   background-color: rgba(0, 0, 0, 0);
   cursor: pointer;
 }
 
-.container2__week {
+
+.container1__week {
   border: none;
   background-color: rgba(0, 0, 0, 0);
   cursor: pointer;
 }
 
-.container2__month {
+.container1__month {
   border: none;
   background-color: rgba(0, 0, 0, 0);
   cursor: pointer;
+}
+
+
+
+
+.container1__nav {
+  display: flex;
+  justify-content: center;
+  width: 10rem;
+  background-color: var(--primary-white);
+  border-radius: .5rem;
+  border: var(--primary-grey) solid 2px;
+}
+
+.container1__nav_prev {
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+  cursor: pointer;
+}
+
+.container1__nav_current {
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+  color: var(--primary-purple);
+  cursor: pointer;
+}
+
+
+.container1__nav_next {
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+  cursor: pointer;
+}
+
+.container3 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--primary-white);
+  padding: 1rem;
+  border: solid 2px var(--primary-grey);
+  border-radius: .5rem;
+
+}
+
+.container3__recherche {
+  border: solid 2px var(--primary-grey);
+  border-radius: .5rem;
+  width: 100%;
+  padding: 0.1rem 1rem;
+}
+
+.container3__checkbox {
+  appearance: none;
+  background-color: var(--primary-white);
+  border: solid 2px var(--primary-purple);
+  width: 1rem;
+  height: 1rem;
+  border-radius: 1rem;
+  cursor: pointer;
+}
+
+.container3__checkbox:checked {
+  appearance: none;
+  background-color: var(--primary-purple);
+}
+
+.container3__elt {
+  display: flex;
+  gap: .4rem;
+}
+
+.container3__select {
+  border: solid 2px var(--primary-grey);
+  border-radius: .5rem;
+  background-color: var(--primary-white);
+}
+
+@media  (min-width:880px) {
+  .container{
+    display: flex;
+    flex-direction: row;
+    padding: 0 5rem;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .container1 {
+    gap: 1rem;
+  }
+
+  .container__1{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .container3 {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+  }
+
+  .container3__année {
+    display: flex;
+    gap: 1rem;
+  }
+
+
 }
