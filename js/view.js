@@ -5,11 +5,11 @@ let V = {};
 
 V.init = function () {
   // IT2: Sélection semaine
-  let nav = document.querySelector("nav");
+  let nav = document.querySelector("#nav");
   nav.addEventListener("click", V.handler_clickOnWeek);
 
   // IT8: Sélection vue
-  let view = document.querySelector(".view");
+  let view = document.querySelector("#view");
   view.addEventListener("click", V.handler_clickOnView);
 
 };
@@ -90,8 +90,6 @@ V.handler_clickOnWeek = function (ev) {
   else if (ev.target.id == "next") {
     V.uicalendar.next();
   }
-
-
 }
 
 

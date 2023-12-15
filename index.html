@@ -9,61 +9,63 @@
 </head>
 
 <body>
-  <div>
     <header>
       <div class="container1">
         <h1>Calendrier 2023-2024</h1>
-        <nav class="nav">
-          <button id="prev">Précédente</button>
-          <button id="current">En cours</button>
-          <button id="next">Suivante</button>
+        <nav class="container1__nav" id="nav">
+          <button class="container1__nav_prev" id="prev"><img id="prev" src="./asset/icon-prev.svg"
+              alt="icon-précdent"></button>
+          <button class="container1__nav_current" id="current">En cours</button>
+          <button class="container1__nav_next" id="next"><img id="next" src="./asset/icon-next.svg"
+              alt="icon-précdent"></button>
         </nav>
       </div>
-
-      <nav class="view">
-        <button id="day">jour</button>
-        <button id="week">semaine</button>
-        <button id="month">mois</button>
-      </nav>
+      <div>
+        <nav class="container2" id="view">
+          <button class="container2__day" id="day"><img id="day" src="./asset/icon-day.svg" alt="day"></button>
+          <button class="container2__week" id="week"><img id="week" src="./asset/icon-week.svg" alt="week"></button>
+          <button class="container2__month" id="month"><img id="month" src="./asset/icon-month.svg" alt="month"></button>
+        </nav>
+        <ul class="" id="year">
+          <li>
+            <input type="checkbox" id="mmi1">
+            <label for="mmi1">MMI 1</label>
+          </li>
+          <li>
+            <input type="checkbox" id="mmi2">
+            <label cfor="mmi2">MMI 2</label>
+          </li>
+          <li>
+            <input type="checkbox" id="mmi3">
+            <label for="mmi3">MMI 3</label>
+          </li>
+          <hr>
+        </ul>
+        <select name="groups" id="groups">
+          <option value="">-- Choisir un groupe --</option>
+          <option value="BUT1-G1">BUT1-G1</option>
+          <option value="BUT1-G21">BUT1-G21</option>
+          <option value="BUT1-G22">BUT1-G22</option>
+          <option value="BUT1-G3">BUT1-G3</option>
+          <option value="BUT2-G1">BUT2-G1</option>
+          <option value="BUT2-G21">BUT2-G21</option>
+          <option value="BUT2-G22">BUT2-G22</option>
+          <option value="BUT2-G3">BUT2-G3</option>
+          <option value="BUT3-G1">BUT3-G1</option>
+          <option value="BUT3-G21">BUT3-G21</option>
+          <option value="BUT3-G22">BUT3-G22</option>
+          <option value="BUT3-G3">BUT3-G3</option>
+        </select>
+        <br>
+        </br>
+        <form action="/rechercher" method="get">
+          <label for="search">Rechercher : </label>
+          <input type="text" id="search" name="q" placeholder="Recherche...">
+        </form>
+      </div>
     </header>
-    <ul id="year">
-      <li>
-        <input type="checkbox" id="mmi1">
-        <label for="mmi1">MMI 1</label>
-      </li>
-      <li>
-        <input type="checkbox" id="mmi2">
-        <label cfor="mmi2">MMI 2</label>
-      </li>
-      <li>
-        <input type="checkbox" id="mmi3">
-        <label for="mmi3">MMI 3</label>
-      </li>
-      <hr>
-    </ul>
-    <select name="groups" id="groups">
-      <option value="">-- Choisir un groupe --</option>
-      <option value="BUT1-G1">BUT1-G1</option>
-      <option value="BUT1-G21">BUT1-G21</option>
-      <option value="BUT1-G22">BUT1-G22</option>
-      <option value="BUT1-G3">BUT1-G3</option>
-      <option value="BUT2-G1">BUT2-G1</option>
-      <option value="BUT2-G21">BUT2-G21</option>
-      <option value="BUT2-G22">BUT2-G22</option>
-      <option value="BUT2-G3">BUT2-G3</option>
-      <option value="BUT3-G1">BUT3-G1</option>
-      <option value="BUT3-G21">BUT3-G21</option>
-      <option value="BUT3-G22">BUT3-G22</option>
-      <option value="BUT3-G3">BUT3-G3</option>
-    </select>
-    <br>
-    </br>
-    <form action="/rechercher" method="get">
-      <label for="search">Rechercher : </label>
-      <input type="text" id="search" name="q" placeholder="Recherche...">
-    </form>
 
-    <main id="calendar" style="height: 800px"></main>
+  <main id="calendar" style="height: 800px"></main>
   </div>
 
   <script type="module" src="/main.js"></script>

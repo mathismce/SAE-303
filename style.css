@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Lexend&display=swap');
 
 :root{
-    --primary-purple: #49236C;
+    --primary-purple: #7B49AA;
+    --prmimary-white: #ffffff;
 }
 /* Box sizing rules */
 *,
@@ -42,6 +43,7 @@ body {
   min-height: 100vh;
   text-rendering: optimizeSpeed;
   line-height: 1.5;
+  list-style: none;
 }
 
 /* Remove list styles on ul, ol elements with a class attribute */
@@ -96,3 +98,61 @@ body {
     font-family:'Lexend';
 }
 
+.container1{
+
+}
+
+.container1__nav{
+ display: flex;
+ justify-content: center;
+ width: 10rem;
+ background-color: var(--prmimary-white);
+ border-radius: .5rem;
+ border:var(--primary-purple) solid 2px;
+}
+
+.container1__nav_prev{
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+  cursor: pointer;
+}
+
+.container1__nav_current{
+  border: none;
+  background-color:rgba(0, 0, 0, 0);
+  cursor: pointer;
+}
+
+.container1__nav_next{
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+  cursor: pointer;
+}
+
+
+.container2 {
+  display: flex;
+ justify-content: center;
+ width: 10rem;
+ background-color: var(--prmimary-white);
+ border-radius: .5rem;
+ border:var(--primary-purple) solid 2px;
+}
+
+.container2__day {
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+  cursor: pointer;
+}
+
+.container2__week {
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+  cursor: pointer;
+}
+
+.container2__month {
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+  cursor: pointer;
+}
