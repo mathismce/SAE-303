@@ -90,9 +90,20 @@ C.init = function () {
 
   if (eventsByGroup) {
     C.handler_ChangeGroup({target:{value: selectedGroup}});
+
+    let select = document.querySelector("#groups");
+    
+      for (let i = 0; i < select.options.length; i++) {
+        if (select.options[i].value == selectedGroup) {
+          select.options[i].selected = true;
+          break; 
+        }
+      }
+    } 
+
   };
 
-};
+
 
 
   // Fonction IT4 : Tri par année
